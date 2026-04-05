@@ -1,0 +1,31 @@
+﻿@model EditArticleViewModel
+
+<h1>Editează articolul</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" asp-items="Model.Categories" class="form-control">
+            <option value="">-- Selectați categoria --</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Actualizează</button>
+</form>
+
+<a asp-page="/Index">← Înapoi la listă</a>

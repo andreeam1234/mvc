@@ -1,0 +1,26 @@
+﻿@model Lab06.ViewModels.HomeViewModel
+
+<div class="text-center mb-5">
+    <h1 class="display-4">Bine ai venit pe News Portal</h1>
+    <p class="lead">Avem @Model.TotalArticles articole publicate în @Model.TotalCategories categorii.</p>
+</div>
+
+<div class="row">
+    @foreach (var article in Model.RecentArticles)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@article.CategoryName</h6>
+                    <p class="card-text">@(article.Content.Length > 100 ? article.Content.Substring(0, 100) + "..." : article.Content)</p>
+                    <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" class="btn btn-sm btn-outline-primary">Citește mai mult</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="text-center mt-4">
+    <a asp-controller="Articles" asp-action="Index" class="btn btn-primary btn-lg">Vezi toate articolele</a>
+</div>
