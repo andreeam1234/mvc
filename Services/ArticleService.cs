@@ -24,7 +24,7 @@ public class ArticleService : IArticleService
 
     public async Task AddAsync(Article article, CancellationToken cancellationToken = default)
     {
-        article.PublishedAt = DateTime.Now;  // logică de business — nu aparține repository-ului
+        article.PublishedAt = DateTime.Now;  
         await _unitOfWork.ArticleRepository.AddAsync(article, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

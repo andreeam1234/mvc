@@ -14,7 +14,6 @@ public class UserService : IUserService
 
     public async Task<List<User>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        // Folosim UserRepository-ul deja expus de UnitOfWork în Partea 2 a laboratorului
         return await _unitOfWork.UserRepository.GetAllAsync(cancellationToken);
     }
 }
