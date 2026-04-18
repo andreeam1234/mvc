@@ -12,7 +12,7 @@ public class ArticleRepository : Repository<Article>, IArticleRepository
     {
         return await _context.Articles
             .Include(a => a.Category)
-            .Include(a => a.User)
+            .Include(a => a.Author)
             .OrderByDescending(a => a.PublishedAt)
             .ToListAsync(cancellationToken);
     }
@@ -21,7 +21,7 @@ public class ArticleRepository : Repository<Article>, IArticleRepository
     {
         return await _context.Articles
             .Include(a => a.Category)
-            .Include(a => a.User)
+            .Include(a => a.Author)
             .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
     }
 
@@ -30,7 +30,7 @@ public class ArticleRepository : Repository<Article>, IArticleRepository
         return await _context.Articles
             .Where(a => a.CategoryId == categoryId)
             .Include(a => a.Category)
-            .Include(a => a.User)
+            .Include(a => a.Author)
             .OrderByDescending(a => a.PublishedAt)
             .ToListAsync(cancellationToken);
     }
@@ -43,7 +43,7 @@ public class ArticleRepository : Repository<Article>, IArticleRepository
     {
         return await _context.Articles
             .Include(a => a.Category)
-            .Include(a => a.User)
+            .Include(a => a.Author)
             .OrderByDescending(a => a.PublishedAt)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)

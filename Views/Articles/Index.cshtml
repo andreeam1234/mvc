@@ -2,7 +2,10 @@
 
 <div class="d-flex justify-content-between align-items-center">
     <h1>Toate Articolele</h1>
-    <a asp-action="Create" class="btn btn-success">Adaugă Articol Nou</a>
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create" class="btn btn-success">Adaugă Articol Nou</a>
+    }
 </div>
 
 <hr />
@@ -14,11 +17,20 @@
             <h3>@article.Title</h3>
             <p class="text-muted small">Categorie: @article.CategoryName | Autor: @article.AuthorName</p>
             <p>@article.Content</p>
-     
+
             <div class="mt-2">
-                <a asp-action="Edit" asp-route-id="@article.Id" class="btn btn-sm btn-warning">Edit</a>
+                @* Exercițiul 3: Doar utilizatorii logați văd Edit și Delete *@
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Edit" asp-route-id="@article.Id" class="btn btn-sm btn-warning">Editare</a>
+                }
+
                 <a asp-action="Details" asp-route-id="@article.Id" class="btn btn-sm btn-info text-white">Detalii</a>
-                <a asp-action="Delete" asp-route-id="@article.Id" class="btn btn-sm btn-danger">Șterge</a>
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Delete" asp-route-id="@article.Id" class="btn btn-sm btn-danger">Ștergere</a>
+                }
             </div>
         </div>
     }
